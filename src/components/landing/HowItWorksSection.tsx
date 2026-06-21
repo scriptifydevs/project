@@ -24,7 +24,7 @@ const T = {
   muted: "#71717a",
 };
 
-function nc(hex, a) {
+function nc(hex: string, a: number): string {
   var r = parseInt(hex.slice(1, 3), 16);
   var g = parseInt(hex.slice(3, 5), 16);
   var b = parseInt(hex.slice(5, 7), 16);
