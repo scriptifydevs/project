@@ -17,14 +17,12 @@ export async function fetchApi<T>(endpoint: string, options: RequestOptions = {}
   const token = state.auth.token || (typeof window !== 'undefined' ? localStorage.getItem('token') : null);
 
   // 2. Setup Headers
-  const headers: HeadersInit = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    ...options.headers,
-  };
+  const headers = new Headers(options.headers);
+  headers.set('Content-Type', 'application/json');
+  headers.set('Accept', 'application/json');
 
   if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
+    headers.set('Authorization', `Bearer ${token}`);
   }
 
   // 3. Build Config
