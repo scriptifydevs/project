@@ -160,33 +160,26 @@ export default function EcosystemSection() {
           transform: translateY(0);
         }
         :global(.mt-grid) {
-          display: grid;
-          gap: 8px;
+          display: flex;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          gap: 12px;
+          padding: 8px 16px 16px;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
         }
-        :global(.mt-g5) {
-          grid-template-columns: 1fr 1fr;
+        :global(.mt-grid::-webkit-scrollbar) { display: none; }
+        :global(.mt-grid > *) {
+          flex: 0 0 auto;
+          width: 75vw;
+          max-width: 180px;
+          scroll-snap-align: center;
         }
-        :global(.mt-g5 > :last-child) {
-          grid-column: 1 / -1;
-          max-width: 50%;
-          justify-self: center;
-        }
-        :global(.mt-g3) {
-          grid-template-columns: 1fr 1fr;
-        }
-        :global(.mt-g3 > :last-child) {
-          grid-column: 1 / -1;
-          max-width: 50%;
-          justify-self: center;
-        }
-        :global(.mt-g2) {
-          grid-template-columns: 1fr 1fr;
+        :global(.mt-g5), :global(.mt-g3), :global(.mt-g2) {
+          scroll-snap-type: x mandatory;
         }
         @media (min-width: 480px) {
-          :global(.mt-g5) { grid-template-columns: repeat(3, 1fr); }
-          :global(.mt-g5 > :last-child) { grid-column: auto; max-width: none; justify-self: auto; }
-          :global(.mt-g3) { grid-template-columns: repeat(3, 1fr); }
-          :global(.mt-g3 > :last-child) { grid-column: auto; max-width: none; justify-self: auto; }
+          :global(.mt-grid > *) { max-width: 200px; }
         }
         :global(.mt-hero-wrap) {
           max-width: 75%;
@@ -207,29 +200,29 @@ export default function EcosystemSection() {
         }
         :global(.mc-on) { opacity: 1; }
         :global(.mc-line) {
-          width: 1.5px;
-          height: 16px;
+          width: 2px;
+          height: 18px;
           border-radius: 1px;
+          box-shadow: 0 0 6px ${nc(T.neon, 0.6)};
         }
         :global(.mc-lt) {
-          background: linear-gradient(to bottom, ${nc(T.neon, 0.2)}, ${nc(T.neon, 0.06)});
+          background: linear-gradient(to bottom, transparent, ${nc(T.neon, 0.9)});
         }
         :global(.mc-lb) {
-          background: linear-gradient(to bottom, ${nc(T.neon, 0.06)}, ${nc(T.neon, 0.2)});
+          background: linear-gradient(to bottom, ${nc(T.neon, 0.9)}, transparent);
         }
         :global(.mc-node) {
-          width: 8px;
-          height: 8px;
-          border-radius: 2px;
-          background: ${nc(T.neon, 0.3)};
-          transform: rotate(45deg);
-          margin: 3px 0;
-          animation: mcPulse 2.5s ease-in-out infinite;
-          box-shadow: 0 0 12px ${nc(T.neon, 0.2)}, 0 0 4px ${nc(T.neon, 0.4)};
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #fff;
+          margin: 4px 0;
+          animation: mcPulse 1.2s ease-in-out infinite;
+          box-shadow: 0 0 15px ${nc(T.neon, 1)}, 0 0 5px #fff;
         }
         @keyframes mcPulse {
-          0%,100% { opacity: 0.4; transform: rotate(45deg) scale(1); }
-          50% { opacity: 1; transform: rotate(45deg) scale(1.4); }
+          0%,100% { opacity: 0.5; transform: scale(0.9); box-shadow: 0 0 8px ${nc(T.neon, 0.8)}; }
+          50% { opacity: 1; transform: scale(1.3); box-shadow: 0 0 20px ${nc(T.neon, 1)}, 0 0 6px #fff; }
         }
         /* Side branches */
         :global(.mc-branches) {
@@ -242,18 +235,19 @@ export default function EcosystemSection() {
         }
         :global(.mc-br-line) {
           position: absolute;
-          height: 1.5px;
-          background: linear-gradient(to right, ${nc(T.neon, 0.06)}, ${nc(T.neon, 0.2)}, ${nc(T.neon, 0.06)});
+          height: 2px;
+          background: linear-gradient(to right, transparent, ${nc(T.neon, 0.8)}, transparent);
           border-radius: 1px;
+          box-shadow: 0 0 8px ${nc(T.neon, 0.5)};
         }
         :global(.mc-br-dot) {
           position: absolute;
           width: 5px;
           height: 5px;
           border-radius: 50%;
-          background: ${nc(T.neon, 0.25)};
-          animation: mcPulse 2.5s ease-in-out infinite;
-          box-shadow: 0 0 8px ${nc(T.neon, 0.15)};
+          background: #fff;
+          animation: mcPulse 1.2s ease-in-out infinite;
+          box-shadow: 0 0 12px ${nc(T.neon, 1)};
         }
 
         /* ══════════════════════════════════════
@@ -326,13 +320,13 @@ export default function EcosystemSection() {
         }
 
         /* Card sizes */
-        :global(.nd-sm) { padding: 10px 11px; }
-        :global(.nd-md) { padding: 11px 12px; }
-        :global(.nd-lg) { padding: 12px 13px; }
+        :global(.nd-sm) { padding: 8px 10px; border-radius: 10px; }
+        :global(.nd-md) { padding: 10px 12px; border-radius: 12px; }
+        :global(.nd-lg) { padding: 12px 14px; border-radius: 12px; }
         @media (min-width: 640px) {
-          :global(.nd-sm) { padding: 12px 14px; border-radius: 14px; }
-          :global(.nd-md) { padding: 14px 16px; border-radius: 14px; }
-          :global(.nd-lg) { padding: 16px 18px; border-radius: 15px; }
+          :global(.nd-sm) { padding: 10px 12px; }
+          :global(.nd-md) { padding: 12px 14px; }
+          :global(.nd-lg) { padding: 14px 16px; }
         }
         @media (min-width: 1024px) {
           :global(.nd:hover) {
@@ -352,13 +346,13 @@ export default function EcosystemSection() {
           color: ${T.neon};
           transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.5s ease;
         }
-        :global(.nd-ib-sm) { width: 30px; height: 30px; border-radius: 8px; }
-        :global(.nd-ib-md) { width: 32px; height: 32px; border-radius: 9px; }
-        :global(.nd-ib-lg) { width: 34px; height: 34px; border-radius: 9px; }
+        :global(.nd-ib-sm) { width: 28px; height: 28px; border-radius: 6px; }
+        :global(.nd-ib-md) { width: 30px; height: 30px; border-radius: 8px; }
+        :global(.nd-ib-lg) { width: 32px; height: 32px; border-radius: 8px; }
         @media (min-width: 640px) {
-          :global(.nd-ib-sm) { width: 36px; height: 36px; border-radius: 10px; }
-          :global(.nd-ib-md) { width: 40px; height: 40px; border-radius: 11px; }
-          :global(.nd-ib-lg) { width: 44px; height: 44px; border-radius: 12px; }
+          :global(.nd-ib-sm) { width: 32px; height: 32px; border-radius: 8px; }
+          :global(.nd-ib-md) { width: 36px; height: 36px; border-radius: 10px; }
+          :global(.nd-ib-lg) { width: 40px; height: 40px; border-radius: 12px; }
         }
         :global(.nd:hover .nd-ib) {
           background: ${nc(T.neon, 0.15)};
@@ -367,35 +361,35 @@ export default function EcosystemSection() {
         }
 
         /* ── Icon SVG ── */
-        :global(.nd-ico-sm) { width: 14px; height: 14px; }
-        :global(.nd-ico-md) { width: 15px; height: 15px; }
+        :global(.nd-ico-sm) { width: 12px; height: 12px; }
+        :global(.nd-ico-md) { width: 14px; height: 14px; }
         :global(.nd-ico-lg) { width: 16px; height: 16px; }
         @media (min-width: 640px) {
-          :global(.nd-ico-sm) { width: 17px; height: 17px; }
-          :global(.nd-ico-md) { width: 19px; height: 19px; }
-          :global(.nd-ico-lg) { width: 21px; height: 21px; }
+          :global(.nd-ico-sm) { width: 15px; height: 15px; }
+          :global(.nd-ico-md) { width: 17px; height: 17px; }
+          :global(.nd-ico-lg) { width: 19px; height: 19px; }
         }
 
         /* ── Title ── */
         :global(.nd-t) { font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1.2; color: ${T.white}; }
-        :global(.nd-t-sm) { font-size: 10px; }
+        :global(.nd-t-sm) { font-size: 9.5px; }
         :global(.nd-t-md) { font-size: 10.5px; }
-        :global(.nd-t-lg) { font-size: 11px; }
+        :global(.nd-t-lg) { font-size: 11.5px; }
         @media (min-width: 640px) {
-          :global(.nd-t-sm) { font-size: 12px; }
-          :global(.nd-t-md) { font-size: 13px; }
-          :global(.nd-t-lg) { font-size: 14px; }
+          :global(.nd-t-sm) { font-size: 11px; }
+          :global(.nd-t-md) { font-size: 12px; }
+          :global(.nd-t-lg) { font-size: 13px; }
         }
 
         /* ── Desc ── */
         :global(.nd-d) { font-family: "Inter", sans-serif; line-height: 1.4; color: ${T.muted}; transition: color 0.35s ease; }
-        :global(.nd-d-sm) { font-size: 8px; }
-        :global(.nd-d-md) { font-size: 8.5px; }
+        :global(.nd-d-sm) { font-size: 7.5px; }
+        :global(.nd-d-md) { font-size: 8px; }
         :global(.nd-d-lg) { font-size: 9px; }
         @media (min-width: 640px) {
-          :global(.nd-d-sm) { font-size: 10px; }
-          :global(.nd-d-md) { font-size: 10.5px; }
-          :global(.nd-d-lg) { font-size: 11px; }
+          :global(.nd-d-sm) { font-size: 9px; }
+          :global(.nd-d-md) { font-size: 9.5px; }
+          :global(.nd-d-lg) { font-size: 10px; }
         }
         :global(.nd:hover .nd-d) { color: ${nc(T.neon, 0.55)}; }
 
@@ -513,7 +507,7 @@ export default function EcosystemSection() {
            ══════════════════════════════════════ */
         :global(.pDot) { animation: pDot 3s ease-in-out infinite; }
         @keyframes pDot { 0%, 100% { opacity: 0.3; transform: scale(1) } 50% { opacity: 1; transform: scale(1.8) } }
-        :global(.dFlow) { animation: dFlow 2.2s linear infinite; }
+        :global(.dFlow) { animation: dFlow 1.5s linear infinite; filter: drop-shadow(0 0 6px ${nc(T.neon, 1)}); }
         @keyframes dFlow { to { stroke-dashoffset: -36; } }
         :global(.gPulse) { animation: gPulse 3.5s ease-in-out infinite; }
         @keyframes gPulse { 0%, 100% { opacity: 0.2 } 50% { opacity: 0.6 } }
@@ -701,14 +695,32 @@ function NodeCard({ icon: Icon, title, desc, size, delay, show }: { icon: any; t
    ══════════════════════════════════════ */
 function HeroCard({ show }: { show: boolean }) {
   return (
-    <div className={"hc" + (show ? " hc-in" : "")}>
-      <div className="hc-ib"><Sparkles /></div>
-      <h4 className="hc-t">Your Complete Dev Ecosystem</h4>
-      <p className="hc-d">Everything you need to build, deploy & scale</p>
-      <button className="hc-btn">
-        <span>Get Services</span>
-        <ArrowRight />
-      </button>
+    <div 
+      className={`relative w-full max-w-[320px] mx-auto rounded-[16px] overflow-hidden p-[1.5px] transition-all duration-1000 ease-out transform ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} 
+      style={{ transitionDelay: "700ms" }}
+    >
+      {/* Moving Energy Border */}
+      <div className="absolute top-1/2 left-1/2 w-[250%] h-[250%] -translate-x-1/2 -translate-y-1/2 bg-[conic-gradient(from_0deg,transparent_0_280deg,#ccff00_360deg)] animate-[spin_2.5s_linear_infinite]" />
+      
+      {/* Inner Card (No hover animations) */}
+      <div className="relative z-10 w-full h-full bg-[#111] rounded-[15px] p-4 sm:p-5 flex items-center gap-4">
+        
+        {/* Full & Fit Logo Box */}
+        <div className="flex flex-shrink-0 w-16 h-16 rounded-[12px] bg-[#ccff00]/[0.05] shadow-[0_0_15px_rgba(204,255,0,0.15)] overflow-hidden">
+          <img src="/logo.png" alt="ScriptifyDevs Logo" className="w-full h-full object-cover" />
+        </div>
+        
+        {/* Text */}
+        <div className="min-w-0 pt-1 text-left">
+          <p className="font-space text-lg sm:text-xl font-bold text-white leading-tight mb-1">
+            Scriptify<span className="text-[#ccff00]">Devs</span>
+          </p>
+          <p className="font-inter text-[9px] sm:text-[10px] uppercase tracking-[0.15em] font-semibold text-[#ccff00]/80">
+            All Market On One Place
+          </p>
+        </div>
+        
+      </div>
     </div>
   );
 }
