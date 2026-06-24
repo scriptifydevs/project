@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   description: "pakistan 1st markeet palce for code and automation",
 };
 
+import Footer from "@/components/layout/Footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,6 +36,7 @@ export default function RootLayout({
           <div className="pt-[60px]">
             {children}
           </div>
+          <Footer />
         </StoreProvider>
       </body>
     </html>
