@@ -75,10 +75,10 @@ export default function MissionSection() {
             />
 
             {/* ═══ MAIN LAYOUT ═══ */}
-            <div className="relative z-10 w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 py-12 lg:py-24 items-center">
+            <div className="relative z-10 w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 py-8 lg:py-12 items-center">
 
                 {/* ═══ LEFT: TEXT CONTENT ═══ */}
-                <div className="relative flex flex-col justify-center px-6 py-12 sm:px-10 md:px-16 lg:px-20 lg:py-0">
+                <div className="relative flex flex-col justify-center px-6 py-6 sm:px-10 md:px-16 lg:px-20 lg:py-0">
                     <div className="w-full max-w-xl">
 
 
